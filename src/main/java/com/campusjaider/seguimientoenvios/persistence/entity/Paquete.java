@@ -2,6 +2,9 @@ package com.campusjaider.seguimientoenvios.persistence.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -32,21 +35,25 @@ public class Paquete {
 
     @ManyToOne()
     @JoinColumn(name = "remitente")
+    @JsonManagedReference("remitente-paquete")
     private Cliente remitente;
 
     @ManyToOne()
     @JoinColumn(name = "destinatario")
+    @JsonManagedReference("destinatario-paquete")
     private Cliente destinatario;
 
-    @ManyToMany()
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "paquete_ruta",
         joinColumns = {@JoinColumn(name = "id_ruta")},
         inverseJoinColumns = {@JoinColumn(name = "id_paquete")}
     )
+    @JsonBackReference
     private List<Ruta> rutas;
 
     @OneToMany(mappedBy = "paquete", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JsonBackReference
     private List<Seguimiento> seguimientos;
 
 

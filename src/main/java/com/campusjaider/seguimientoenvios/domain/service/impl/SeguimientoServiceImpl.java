@@ -3,42 +3,42 @@ package com.campusjaider.seguimientoenvios.domain.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.campusjaider.seguimientoenvios.domain.repository.SeguimientoRepository;
 import com.campusjaider.seguimientoenvios.domain.service.SeguimientoService;
 import com.campusjaider.seguimientoenvios.persistence.entity.Seguimiento;
 
 @Service
 public class SeguimientoServiceImpl implements SeguimientoService {
 
+    @Autowired
+    private SeguimientoRepository seguimientoRepository;
+
     @Override
     public List<Seguimiento> getAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAll'");
+        return seguimientoRepository.findAll();
     }
 
     @Override
     public Optional<Seguimiento> getById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getById'");
+        return seguimientoRepository.findById(id);
     }
 
     @Override
     public Seguimiento save(Seguimiento t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+        return seguimientoRepository.save(t);
     }
 
     @Override
     public Seguimiento update(Seguimiento t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        return seguimientoRepository.save(t);
     }
 
     @Override
     public void deleteById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        seguimientoRepository.deleteById(id);
     }
     
 }

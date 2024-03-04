@@ -54,7 +54,6 @@ public class ClienteServiceImpl implements ClienteService{
         return clienteRepository.save(cliente);
     }
     
-
     @Override
     @Transactional
     public Cliente update(Cliente t) {

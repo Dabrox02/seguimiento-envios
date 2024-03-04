@@ -3,42 +3,42 @@ package com.campusjaider.seguimientoenvios.domain.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.campusjaider.seguimientoenvios.domain.repository.TransportistaRepository;
 import com.campusjaider.seguimientoenvios.domain.service.TransportistaService;
 import com.campusjaider.seguimientoenvios.persistence.entity.Transportista;
 
 @Service
 public class TransportistaServiceImpl implements TransportistaService{
 
+    @Autowired
+    private TransportistaRepository transportistaRepository;
+
     @Override
     public List<Transportista> getAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAll'");
+        return transportistaRepository.findAll();
     }
 
     @Override
     public Optional<Transportista> getById(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getById'");
+        return transportistaRepository.findById(id);
     }
 
     @Override
     public Transportista save(Transportista t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+        return transportistaRepository.save(t);
     }
 
     @Override
     public Transportista update(Transportista t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        return transportistaRepository.save(t);
     }
 
     @Override
     public void deleteById(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        transportistaRepository.deleteById(id);
     }
     
 }

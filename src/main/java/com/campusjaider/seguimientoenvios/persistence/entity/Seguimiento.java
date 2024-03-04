@@ -4,6 +4,8 @@ import java.sql.Time;
 import java.util.Date;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,6 +23,7 @@ public class Seguimiento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idSeguimiento;
 
+    @Enumerated(EnumType.STRING)
     private EstadoEnvio estadoEnvio;
 
     @Temporal(TemporalType.DATE)

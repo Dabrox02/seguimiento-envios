@@ -3,6 +3,7 @@ package com.campusjaider.seguimientoenvios.persistence.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -35,9 +36,11 @@ public class Cliente {
     private Direccion direccionCliente;
 
     @OneToMany(mappedBy = "remitente", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JsonBackReference
     private List<Paquete> paquetesEnviados = new ArrayList<>();
 
     @OneToMany(mappedBy = "destinatario", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JsonBackReference
     private List<Paquete> paquetesRecibidos = new ArrayList<>();
 
 
