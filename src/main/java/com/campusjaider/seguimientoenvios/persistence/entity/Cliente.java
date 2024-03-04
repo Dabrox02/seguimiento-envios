@@ -3,14 +3,14 @@ package com.campusjaider.seguimientoenvios.persistence.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -31,16 +31,16 @@ public class Cliente {
     @Column(length = 100, nullable = false)
     private String emailCliente;
 
-    @OneToOne(mappedBy = "cliente", cascade =  CascadeType.ALL, orphanRemoval = true,fetch =  FetchType.LAZY)
-    @JsonManagedReference
+    @OneToOne(cascade =  CascadeType.ALL, orphanRemoval = true,fetch =  FetchType.EAGER)
+    @JoinColumn(name = "id_direccion")
     private Direccion direccionCliente;
 
     @OneToMany(mappedBy = "remitente", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @JsonBackReference
+    @JsonIgnore
     private List<Paquete> paquetesEnviados = new ArrayList<>();
 
     @OneToMany(mappedBy = "destinatario", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @JsonBackReference
+    @JsonIgnore
     private List<Paquete> paquetesRecibidos = new ArrayList<>();
 
 

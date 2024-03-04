@@ -1,15 +1,11 @@
 package com.campusjaider.seguimientoenvios.persistence.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -28,23 +24,17 @@ public class Direccion {
     private String estado;
     @Column(length = 20, nullable = false)
     private String codigoPostal;   
-    
-    @JoinColumn(name = "dni_cliente")
-    @OneToOne(fetch = FetchType.LAZY)
-    @JsonBackReference
-    private Cliente cliente;
 
 
     public Direccion() {
     }
 
-    public Direccion(Long idDireccion, String calle, String ciudad, String estado, String codigoPostal, Cliente cliente) {
+    public Direccion(Long idDireccion, String calle, String ciudad, String estado, String codigoPostal) {
         this.idDireccion = idDireccion;
         this.calle = calle;
         this.ciudad = ciudad;
         this.estado = estado;
         this.codigoPostal = codigoPostal;
-        this.cliente = cliente;
     }
 
     public Long getIdDireccion() {
@@ -87,14 +77,6 @@ public class Direccion {
         this.codigoPostal = codigoPostal;
     }
 
-    public Cliente getCliente() {
-        return this.cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
     @Override
     public String toString() {
         return "{" +
@@ -103,10 +85,7 @@ public class Direccion {
             ", ciudad='" + getCiudad() + "'" +
             ", estado='" + getEstado() + "'" +
             ", codigoPostal='" + getCodigoPostal() + "'" +
-            ", cliente='" + getCliente() + "'" +
             "}";
     }
-
-
     
 }

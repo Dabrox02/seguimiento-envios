@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.campusjaider.seguimientoenvios.domain.repository.ClienteRepository;
-import com.campusjaider.seguimientoenvios.domain.repository.DireccionRepository;
 import com.campusjaider.seguimientoenvios.domain.service.ClienteService;
 import com.campusjaider.seguimientoenvios.persistence.entity.Cliente;
 import com.campusjaider.seguimientoenvios.persistence.entity.Direccion;
@@ -21,8 +20,6 @@ public class ClienteServiceImpl implements ClienteService{
 
     @Autowired
     private ClienteRepository clienteRepository;
-    @Autowired
-    private DireccionRepository direccionRepository;
 
     @Override
     @Transactional
@@ -40,16 +37,8 @@ public class ClienteServiceImpl implements ClienteService{
     @Transactional
     public Cliente save(Cliente cliente) {
         Direccion direccion = cliente.getDireccionCliente();
-        if (direccion != null && direccion.getIdDireccion() != null) {
-            Optional<Direccion> direccionExistente = direccionRepository.findById(direccion.getIdDireccion());
-            if (direccionExistente.isPresent()) {
-                if(direccionExistente.get().getCliente() != null){
-                    throw new RuntimeException("La dirección ya está registrada");
-                } else {
-                    direccionExistente.get().setCliente(cliente);
-                    cliente.setDireccionCliente(direccionExistente.get());
-                }
-            }
+        if (direccion != null) {
+            direccion.setIdDireccion(null);
         }
         return clienteRepository.save(cliente);
     }
