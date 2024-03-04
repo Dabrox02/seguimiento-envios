@@ -60,14 +60,12 @@ public class Paquete {
     public Paquete() {
     }
 
-    public Paquete(Long idPaquete, Double peso, TamanoPaquete tamano, Cliente remitente, Cliente destinatario, List<Ruta> rutas, List<Seguimiento> seguimientos) {
+    public Paquete(Long idPaquete, Double peso, TamanoPaquete tamano, Cliente remitente, Cliente destinatario) {
         this.idPaquete = idPaquete;
         this.peso = peso;
         this.tamano = tamano;
         this.remitente = remitente;
         this.destinatario = destinatario;
-        this.rutas = rutas;
-        this.seguimientos = seguimientos;
     }
 
     public Long getIdPaquete() {
@@ -110,22 +108,6 @@ public class Paquete {
         this.destinatario = destinatario;
     }
 
-    public List<Ruta> getRutas() {
-        return this.rutas;
-    }
-
-    public void setRutas(List<Ruta> rutas) {
-        this.rutas = rutas;
-    }
-
-    public List<Seguimiento> getSeguimientos() {
-        return this.seguimientos;
-    }
-
-    public void setSeguimientos(List<Seguimiento> seguimientos) {
-        this.seguimientos = seguimientos;
-    }
-
     @Override
     public String toString() {
         return "{" +
@@ -134,8 +116,6 @@ public class Paquete {
             ", tamano='" + getTamano() + "'" +
             ", remitente='" + getRemitente() + "'" +
             ", destinatario='" + getDestinatario() + "'" +
-            ", rutas='" + getRutas() + "'" +
-            ", seguimientos='" + getSeguimientos() + "'" +
             "}";
     }
 

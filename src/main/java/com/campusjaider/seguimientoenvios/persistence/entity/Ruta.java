@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,7 +33,7 @@ public class Ruta {
     @JsonBackReference
     private Transportista transportista;    
 
-    @ManyToMany(mappedBy = "rutas")
+    @ManyToMany(mappedBy = "rutas", cascade = CascadeType.REMOVE)
     private List<Paquete> paquetes;
 
 

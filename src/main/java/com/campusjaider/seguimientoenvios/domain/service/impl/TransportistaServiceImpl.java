@@ -33,7 +33,21 @@ public class TransportistaServiceImpl implements TransportistaService{
 
     @Override
     public Transportista update(Transportista t) {
-        return transportistaRepository.save(t);
+        Transportista transportista = transportistaRepository.findById(t.getNitTransportista()).orElse(null);
+        if(transportista != null){
+            if(t.getEmailTransportista() != null){
+                transportista.setEmailTransportista(t.getEmailTransportista());
+            }
+            if(t.getRazonSocial() != null){
+                transportista.setRazonSocial(t.getRazonSocial());
+            }
+
+            if(t.getTelefonoTransportista() != null){
+                transportista.setTelefonoTransportista(t.getTelefonoTransportista());
+            }
+            return transportistaRepository.save(transportista);
+        }
+        return null;
     }
 
     @Override
