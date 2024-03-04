@@ -36,7 +36,7 @@ public class SeguimientoServiceImpl implements SeguimientoService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void deleteById(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }

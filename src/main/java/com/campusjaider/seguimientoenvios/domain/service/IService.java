@@ -8,5 +8,5 @@ public interface IService <T, U>{
     Optional<T> getById(U id);
     T save(T t);
     T update(T t);
-    void delete(U id);
+    void deleteById(U id);
 }

@@ -66,7 +66,7 @@ public class DireccionServiceImpl implements DireccionService{
 
     @Override
     @Transactional
-    public void delete(Long id) {
+    public void deleteById(Long id) {
         direccionRepository.deleteById(id);
     }
 

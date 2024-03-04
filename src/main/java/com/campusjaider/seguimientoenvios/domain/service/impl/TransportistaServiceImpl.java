@@ -36,7 +36,7 @@ public class TransportistaServiceImpl implements TransportistaService{
     }
 
     @Override
-    public void delete(String id) {
+    public void deleteById(String id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }

@@ -53,7 +53,7 @@ public class DireccionController implements IController<Direccion, Long>{
     @Override
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        direccionService.delete(id);
+        direccionService.deleteById(id);
     }
 
 }
