@@ -3,10 +3,7 @@ package com.campusjaider.seguimientoenvios.web.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.campusjaider.seguimientoenvios.domain.repository.PaqueteRepository;
-import com.campusjaider.seguimientoenvios.domain.repository.RutaRepository;
-import com.campusjaider.seguimientoenvios.persistence.entity.Paquete;
-import com.campusjaider.seguimientoenvios.persistence.entity.Ruta;
+import com.campusjaider.seguimientoenvios.domain.service.impl.PaqueteRutaServiceImpl;
 
 import jakarta.transaction.Transactional;
 
@@ -19,20 +16,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class PaqueteRutaController {
     
     @Autowired
-    private PaqueteRepository paqueteRepository;
-    @Autowired
-    private RutaRepository rutaRepository;
+    private PaqueteRutaServiceImpl paqueteRutaServiceImpl;
 
     @GetMapping("/{idPaquete}/{idRuta}")
     @Transactional
     public void asignarRutaPaquete(@PathVariable Long idPaquete,@PathVariable Long idRuta) {
-        Paquete paquete = paqueteRepository.findById(idPaquete).orElse(null);
-        Ruta ruta = rutaRepository.findById(idRuta).orElse(null);
-
-        if(paquete != null && ruta != null){
-            paquete.addRuta(ruta);
-            paqueteRepository.save(paquete);
-        }
+        paqueteRutaServiceImpl.asignarRutaPaquete(idPaquete, idRuta);
     }
 
 }
