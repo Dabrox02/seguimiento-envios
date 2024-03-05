@@ -2,6 +2,8 @@ package com.campusjaider.seguimientoenvios.persistence.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -40,6 +42,7 @@ public class Paquete {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "paquete_ruta", joinColumns = { @JoinColumn(name = "id_ruta") }, inverseJoinColumns = {
             @JoinColumn(name = "id_paquete") })
+    @JsonIgnore
     private List<Ruta> rutas;
 
     public Paquete() {
@@ -91,6 +94,14 @@ public class Paquete {
 
     public void setDestinatario(Cliente destinatario) {
         this.destinatario = destinatario;
+    }
+
+    public List<Ruta> geRutas(){
+        return this.rutas;
+    }
+
+    public void addRuta(Ruta ruta){
+        this.rutas.add(ruta);
     }
 
     @Override

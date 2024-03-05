@@ -1,4 +1,4 @@
-INSERT INTO direccion (codigo_postal, calle, ciudad, estado)
+INSERT INTO public.direccion (codigo_postal, calle, ciudad, estado)
 VALUES 
     ('12345', 'Calle 1', 'Ciudad 1', 'Estado 1'),
     ('23456', 'Calle 2', 'Ciudad 2', 'Estado 2'),
@@ -11,7 +11,7 @@ VALUES
     ('44455', 'Calle 4', 'Ciudad 4', 'Estado 4'),
     ('55566', 'Calle 5', 'Ciudad 5', 'Estado 5');
 
-INSERT INTO cliente (dni_cliente, telefono_cliente, apellido_string, email_cliente, nombre_cliente, id_direccion)
+INSERT INTO public.cliente (dni_cliente, telefono_cliente, apellido_string, email_cliente, nombre_cliente, id_direccion)
 VALUES 
     ('11111111A', '123456789', 'Gomez', 'gomez@example.com', 'Juan', 1),
     ('22222222B', '987654321', 'Perez', 'perez@example.com', 'Maria', 2),
@@ -24,7 +24,7 @@ VALUES
     ('99999999I', '111222333', 'Apellido4', 'cliente4@example.com', 'Nombre4', 9),
     ('10101010J', '444555666', 'Apellido5', 'cliente5@example.com', 'Nombre5', 10);
 
-INSERT INTO paquete (peso, destinatario, remitente, tamano)
+INSERT INTO public.paquete (peso, destinatario, remitente, tamano)
 VALUES 
     (2.5, '11111111A', '22222222B', 'GRANDE'),
     (1.8, '33333333C', '44444444D', 'MEDIANO'),
@@ -58,3 +58,11 @@ VALUES
 ('RETENIDO', '2024-03-04', '13:00:00', 4),
 ('ENTREGADO', '2024-03-05', '14:00:00', 5);
 
+
+INSERT INTO public.paquete_ruta(id_paquete, id_ruta)
+VALUES 
+(1, 1),
+(1, 2),
+(2, 3),
+(3, 4),
+(5, 5);

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -33,9 +34,8 @@ public class Ruta {
     @JsonBackReference
     private Transportista transportista;    
 
-    @ManyToMany(mappedBy = "rutas", cascade = CascadeType.REMOVE)
+    @ManyToMany(mappedBy = "rutas", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Paquete> paquetes;
-
 
     public Ruta() {
     }
@@ -77,6 +77,14 @@ public class Ruta {
 
     public void setTransportista(Transportista transportista) {
         this.transportista = transportista;
+    }
+
+    public List<Paquete> getPaquetes() {
+        return this.paquetes;
+    }
+
+    public void setPaquetes(List<Paquete> paquetes) {
+        this.paquetes = paquetes;
     }
 
     @Override
