@@ -13,15 +13,14 @@ import com.campusjaider.seguimientoenvios.domain.service.PaqueteService;
 import com.campusjaider.seguimientoenvios.persistence.entity.Cliente;
 import com.campusjaider.seguimientoenvios.persistence.entity.Paquete;
 
-import jakarta.persistence.Column;
 import jakarta.transaction.Transactional;
 
 @Service
-public class PaqueteServiceImpl implements PaqueteService{
+public class PaqueteServiceImpl implements PaqueteService {
 
     @Autowired
     private PaqueteRepository paqueteRepository;
-    
+
     @Autowired
     private ClienteRepository clienteRepository;
 
@@ -42,8 +41,8 @@ public class PaqueteServiceImpl implements PaqueteService{
     public Paquete save(Paquete t) {
         Cliente remitente = t.getRemitente();
         Cliente destinatario = t.getDestinatario();
-        if(remitente != null && destinatario != null){
-            if(remitente.getDniCliente() != null && destinatario.getDniCliente() != null){
+        if (remitente != null && destinatario != null) {
+            if (remitente.getDniCliente() != null && destinatario.getDniCliente() != null) {
                 Optional<Cliente> remitenteOpt = clienteRepository.findById(remitente.getDniCliente());
                 Optional<Cliente> destinatarioOpt = clienteRepository.findById(destinatario.getDniCliente());
                 t.setRemitente(remitenteOpt.get());
@@ -59,18 +58,16 @@ public class PaqueteServiceImpl implements PaqueteService{
         Optional<Paquete> optPaquete = paqueteRepository.findById(t.getIdPaquete());
         if (optPaquete.isPresent()) {
             Paquete paqueteOld = optPaquete.get();
-            
-            for (Field field : t.getClass().getDeclaredFields()) {
-                if (field.isAnnotationPresent(Column.class)) {
-                    try {
-                        field.setAccessible(true);
-                        Object value = field.get(t); 
-                        if (value != null) {
-                            field.set(paqueteOld, value);
-                        }
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
+
+            for (Field field : paqueteOld.getClass().getDeclaredFields()) {
+                try {
+                    field.setAccessible(true);
+                    Object value = field.get(t);
+                    if (value != null) {
+                        field.set(paqueteOld, value);
                     }
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
                 }
             }
             return paqueteRepository.save(paqueteOld);
@@ -83,5 +80,5 @@ public class PaqueteServiceImpl implements PaqueteService{
     public void deleteById(Long id) {
         paqueteRepository.deleteById(id);
     }
-    
+
 }
