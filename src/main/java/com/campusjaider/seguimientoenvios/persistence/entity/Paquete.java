@@ -42,11 +42,6 @@ public class Paquete {
             @JoinColumn(name = "id_paquete") })
     private List<Ruta> rutas;
 
-    // @OneToMany(mappedBy = "paquete", cascade = CascadeType.ALL, orphanRemoval =
-    // true, fetch = FetchType.EAGER)
-    // @JsonBackReference
-    // private List<Seguimiento> seguimientos;
-
     public Paquete() {
     }
 

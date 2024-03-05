@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.campusjaider.seguimientoenvios.domain.repository.ClienteRepository;
 import com.campusjaider.seguimientoenvios.domain.repository.PaqueteRepository;
+import com.campusjaider.seguimientoenvios.domain.repository.SeguimientoRepository;
 import com.campusjaider.seguimientoenvios.domain.service.PaqueteService;
 import com.campusjaider.seguimientoenvios.persistence.entity.Cliente;
 import com.campusjaider.seguimientoenvios.persistence.entity.Paquete;
@@ -23,6 +24,9 @@ public class PaqueteServiceImpl implements PaqueteService {
 
     @Autowired
     private ClienteRepository clienteRepository;
+
+    @Autowired
+    private SeguimientoRepository seguimientoRepository;
 
     @Override
     @Transactional
@@ -78,7 +82,8 @@ public class PaqueteServiceImpl implements PaqueteService {
     @Override
     @Transactional
     public void deleteById(Long id) {
-        paqueteRepository.deleteById(id);
+        seguimientoRepository.deleteSeguimientosByIdPaquete(id);
+        paqueteRepository.deletePaqueteById(id);
     }
 
 }
