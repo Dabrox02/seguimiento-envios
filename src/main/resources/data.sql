@@ -28,7 +28,7 @@ INSERT INTO paquete (peso, destinatario, remitente, tamano)
 VALUES 
     (2.5, '11111111A', '22222222B', 'GRANDE'),
     (1.8, '33333333C', '44444444D', 'MEDIANO'),
-    (0.5, '55555555E', '66666666F', 'PEQUEÑO'),
+    (0.5, '55555555E', '66666666F', 'PEQUENO'),
     (3.2, '77777777G', '88888888H', 'GRANDE'),
     (2.0, '99999999I', '10101010J', 'MEDIANO');
 

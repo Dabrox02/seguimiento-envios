@@ -18,20 +18,20 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "cliente")
 public class Cliente {
-    
+
     @Id
     @Column(length = 20)
     private String dniCliente;
-    @Column(length = 100, nullable = false)
+    @Column(length = 100)
     private String nombreCliente;
-    @Column(length = 100, nullable = false)
+    @Column(length = 100)
     private String apellidoString;
-    @Column(length = 20, nullable = false)
+    @Column(length = 20)
     private String telefonoCliente;
-    @Column(length = 100, nullable = false)
+    @Column(length = 100)
     private String emailCliente;
 
-    @OneToOne(cascade =  CascadeType.ALL, orphanRemoval = true,fetch =  FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_direccion")
     private Direccion direccionCliente;
 
@@ -43,11 +43,12 @@ public class Cliente {
     @JsonIgnore
     private List<Paquete> paquetesRecibidos = new ArrayList<>();
 
-
     public Cliente() {
     }
 
-    public Cliente(String dniCliente, String nombreCliente, String apellidoString, String telefonoCliente, String emailCliente, Direccion direccionCliente, List<Paquete> paquetesEnviados, List<Paquete> paquetesRecibidos) {
+    public Cliente(String dniCliente, String nombreCliente, String apellidoString, String telefonoCliente,
+            String emailCliente, Direccion direccionCliente, List<Paquete> paquetesEnviados,
+            List<Paquete> paquetesRecibidos) {
         this.dniCliente = dniCliente;
         this.nombreCliente = nombreCliente;
         this.apellidoString = apellidoString;
@@ -125,16 +126,15 @@ public class Cliente {
     @Override
     public String toString() {
         return "{" +
-            " dniCliente='" + getDniCliente() + "'" +
-            ", nombreCliente='" + getNombreCliente() + "'" +
-            ", apellidoString='" + getApellidoString() + "'" +
-            ", telefonoCliente='" + getTelefonoCliente() + "'" +
-            ", emailCliente='" + getEmailCliente() + "'" +
-            ", direccionCliente='" + getDireccionCliente() + "'" +
-            ", paquetesEnviados='" + getPaquetesEnviados() + "'" +
-            ", paquetesRecibidos='" + getPaquetesRecibidos() + "'" +
-            "}";
+                " dniCliente='" + getDniCliente() + "'" +
+                ", nombreCliente='" + getNombreCliente() + "'" +
+                ", apellidoString='" + getApellidoString() + "'" +
+                ", telefonoCliente='" + getTelefonoCliente() + "'" +
+                ", emailCliente='" + getEmailCliente() + "'" +
+                ", direccionCliente='" + getDireccionCliente() + "'" +
+                ", paquetesEnviados='" + getPaquetesEnviados() + "'" +
+                ", paquetesRecibidos='" + getPaquetesRecibidos() + "'" +
+                "}";
     }
-    
-  
+
 }

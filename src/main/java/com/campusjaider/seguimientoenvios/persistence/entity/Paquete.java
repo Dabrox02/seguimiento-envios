@@ -2,9 +2,6 @@ package com.campusjaider.seguimientoenvios.persistence.entity;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -17,7 +14,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -29,33 +25,27 @@ public class Paquete {
     private Long idPaquete;
 
     private Double peso;
-    
+
     @Enumerated(EnumType.STRING)
     private TamanoPaquete tamano;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "remitente")
-    @JsonManagedReference("remitente-paquete")
     private Cliente remitente;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "destinatario")
-    @JsonManagedReference("destinatario-paquete")
     private Cliente destinatario;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-        name = "paquete_ruta",
-        joinColumns = {@JoinColumn(name = "id_ruta")},
-        inverseJoinColumns = {@JoinColumn(name = "id_paquete")}
-    )
-    @JsonBackReference
+    @JoinTable(name = "paquete_ruta", joinColumns = { @JoinColumn(name = "id_ruta") }, inverseJoinColumns = {
+            @JoinColumn(name = "id_paquete") })
     private List<Ruta> rutas;
 
-    @OneToMany(mappedBy = "paquete", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @JsonBackReference
-    private List<Seguimiento> seguimientos;
-
+    // @OneToMany(mappedBy = "paquete", cascade = CascadeType.ALL, orphanRemoval =
+    // true, fetch = FetchType.EAGER)
+    // @JsonBackReference
+    // private List<Seguimiento> seguimientos;
 
     public Paquete() {
     }
@@ -111,12 +101,12 @@ public class Paquete {
     @Override
     public String toString() {
         return "{" +
-            " idPaquete='" + getIdPaquete() + "'" +
-            ", peso='" + getPeso() + "'" +
-            ", tamano='" + getTamano() + "'" +
-            ", remitente='" + getRemitente() + "'" +
-            ", destinatario='" + getDestinatario() + "'" +
-            "}";
+                " idPaquete='" + getIdPaquete() + "'" +
+                ", peso='" + getPeso() + "'" +
+                ", tamano='" + getTamano() + "'" +
+                ", remitente='" + getRemitente() + "'" +
+                ", destinatario='" + getDestinatario() + "'" +
+                "}";
     }
 
 }
