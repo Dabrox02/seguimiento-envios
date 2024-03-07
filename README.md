@@ -1,4 +1,4 @@
-# README - API de Seguimiento de Envíos
+# API de Seguimiento de Envíos
 
 ## Tecnologías Utilizadas
 - Java Spring Boot
@@ -10,3 +10,4 @@ Este proyecto consiste en una API de seguimiento de envíos. Utiliza Java Spring
 ## Diseño y Análisis de la Base de Datos
 El diseño y análisis de la base de datos se ha realizado cuidadosamente para garantizar un almacenamiento eficiente y seguro de la información relacionada con los envíos. Se han definido las tablas necesarias para almacenar datos como información del remitente, destinatario, estado del envío, historial de seguimiento, entre otros. Además, se han establecido relaciones adecuadas entre las tablas para mantener la integridad de los datos y optimizar las consultas.
 
+![](db-seguimiento-envios.png)
